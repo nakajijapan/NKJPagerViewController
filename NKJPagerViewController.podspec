@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = "0.1"
   s.summary      = "NKJPagerViewController is like a FragmentsTabsPager, which is in Android. It contains an endlessly scrollable UIScrollView."
   s.homepage     = "https://github.com/nakajijapan/NKJPagerViewController"
-  s.screenshots  = "./swipe.gif"
+  s.screenshots  = "https://raw.githubusercontent.com/nakajijapan/NKJPagerViewController/master/swipe.gif"
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "nakajijapan" => "pp.kupepo.gattyanmo@gmail.com" }
