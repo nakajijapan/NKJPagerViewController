@@ -10,8 +10,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "https://twitter.com/nakajijapan"
   s.platform     = :ios
 
-  #s.source       = { :git => "https://github.com/nakajijapan/NKJPagerViewController.git", :tag => "0.1" }
-  s.source       = { :git => "git@github.com:nakajijapan/NKJPagerViewController.git", :tag => "0.1" }
+  s.source       = { :git => "https://github.com/nakajijapan/NKJPagerViewController.git", :tag => "0.1" }
   s.source_files = "Classes/**/*.{h,m}"
   s.requires_arc = true
 
