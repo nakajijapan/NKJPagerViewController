@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DCDBCCB51A2D7E5C008B219F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBCCB41A2D7E5C008B219F /* main.m */; };
+		DCDBCCB81A2D7E5C008B219F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBCCB71A2D7E5C008B219F /* AppDelegate.m */; };
+		DCDBCCBB1A2D7E5C008B219F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBCCBA1A2D7E5C008B219F /* ViewController.m */; };
+		DCDBCCBE1A2D7E5C008B219F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCDBCCBC1A2D7E5C008B219F /* Main.storyboard */; };
+		DCDBCCC01A2D7E5C008B219F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCDBCCBF1A2D7E5C008B219F /* Images.xcassets */; };
+		DCDBCCC31A2D7E5C008B219F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCDBCCC11A2D7E5C008B219F /* LaunchScreen.xib */; };
+		DCDBCCCF1A2D7E5C008B219F /* NKJPagerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBCCCE1A2D7E5C008B219F /* NKJPagerViewControllerTests.m */; };
+		DCDBCCDB1A2D8E47008B219F /* NKJPagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBCCDA1A2D8E47008B219F /* NKJPagerViewController.m */; };
+		DCDBCCDE1A2D8E5A008B219F /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBCCDD1A2D8E5A008B219F /* ContentViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DCDBCCC91A2D7E5C008B219F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCDBCCA71A2D7E5C008B219F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCDBCCAE1A2D7E5C008B219F;
+			remoteInfo = NKJPagerViewController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DCDBCCAF1A2D7E5C008B219F /* NKJPagerViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NKJPagerViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCDBCCB31A2D7E5C008B219F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCDBCCB41A2D7E5C008B219F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DCDBCCB61A2D7E5C008B219F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DCDBCCB71A2D7E5C008B219F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DCDBCCB91A2D7E5C008B219F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DCDBCCBA1A2D7E5C008B219F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DCDBCCBD1A2D7E5C008B219F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DCDBCCBF1A2D7E5C008B219F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DCDBCCC21A2D7E5C008B219F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		DCDBCCC81A2D7E5C008B219F /* NKJPagerViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NKJPagerViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCDBCCCD1A2D7E5C008B219F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCDBCCCE1A2D7E5C008B219F /* NKJPagerViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NKJPagerViewControllerTests.m; sourceTree = "<group>"; };
+		DCDBCCD91A2D8E47008B219F /* NKJPagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKJPagerViewController.h; sourceTree = "<group>"; };
+		DCDBCCDA1A2D8E47008B219F /* NKJPagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKJPagerViewController.m; sourceTree = "<group>"; };
+		DCDBCCDC1A2D8E5A008B219F /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		DCDBCCDD1A2D8E5A008B219F /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DCDBCCAC1A2D7E5C008B219F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCDBCCC51A2D7E5C008B219F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DCDBCCA61A2D7E5C008B219F = {
+			isa = PBXGroup;
+			children = (
+				DCDBCCD81A2D8E47008B219F /* Classes */,
+				DCDBCCB11A2D7E5C008B219F /* NKJPagerViewController */,
+				DCDBCCCB1A2D7E5C008B219F /* NKJPagerViewControllerTests */,
+				DCDBCCB01A2D7E5C008B219F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DCDBCCB01A2D7E5C008B219F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DCDBCCAF1A2D7E5C008B219F /* NKJPagerViewController.app */,
+				DCDBCCC81A2D7E5C008B219F /* NKJPagerViewControllerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DCDBCCB11A2D7E5C008B219F /* NKJPagerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DCDBCCB61A2D7E5C008B219F /* AppDelegate.h */,
+				DCDBCCB71A2D7E5C008B219F /* AppDelegate.m */,
+				DCDBCCB91A2D7E5C008B219F /* ViewController.h */,
+				DCDBCCBA1A2D7E5C008B219F /* ViewController.m */,
+				DCDBCCDC1A2D8E5A008B219F /* ContentViewController.h */,
+				DCDBCCDD1A2D8E5A008B219F /* ContentViewController.m */,
+				DCDBCCBC1A2D7E5C008B219F /* Main.storyboard */,
+				DCDBCCBF1A2D7E5C008B219F /* Images.xcassets */,
+				DCDBCCC11A2D7E5C008B219F /* LaunchScreen.xib */,
+				DCDBCCB21A2D7E5C008B219F /* Supporting Files */,
+			);
+			path = NKJPagerViewController;
+			sourceTree = "<group>";
+		};
+		DCDBCCB21A2D7E5C008B219F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DCDBCCB31A2D7E5C008B219F /* Info.plist */,
+				DCDBCCB41A2D7E5C008B219F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DCDBCCCB1A2D7E5C008B219F /* NKJPagerViewControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				DCDBCCCE1A2D7E5C008B219F /* NKJPagerViewControllerTests.m */,
+				DCDBCCCC1A2D7E5C008B219F /* Supporting Files */,
+			);
+			path = NKJPagerViewControllerTests;
+			sourceTree = "<group>";
+		};
+		DCDBCCCC1A2D7E5C008B219F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DCDBCCCD1A2D7E5C008B219F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DCDBCCD81A2D8E47008B219F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DCDBCCD91A2D8E47008B219F /* NKJPagerViewController.h */,
+				DCDBCCDA1A2D8E47008B219F /* NKJPagerViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DCDBCCAE1A2D7E5C008B219F /* NKJPagerViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCDBCCD21A2D7E5C008B219F /* Build configuration list for PBXNativeTarget "NKJPagerViewController" */;
+			buildPhases = (
+				DCDBCCAB1A2D7E5C008B219F /* Sources */,
+				DCDBCCAC1A2D7E5C008B219F /* Frameworks */,
+				DCDBCCAD1A2D7E5C008B219F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NKJPagerViewController;
+			productName = NKJPagerViewController;
+			productReference = DCDBCCAF1A2D7E5C008B219F /* NKJPagerViewController.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DCDBCCC71A2D7E5C008B219F /* NKJPagerViewControllerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCDBCCD51A2D7E5C008B219F /* Build configuration list for PBXNativeTarget "NKJPagerViewControllerTests" */;
+			buildPhases = (
+				DCDBCCC41A2D7E5C008B219F /* Sources */,
+				DCDBCCC51A2D7E5C008B219F /* Frameworks */,
+				DCDBCCC61A2D7E5C008B219F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DCDBCCCA1A2D7E5C008B219F /* PBXTargetDependency */,
+			);
+			name = NKJPagerViewControllerTests;
+			productName = NKJPagerViewControllerTests;
+			productReference = DCDBCCC81A2D7E5C008B219F /* NKJPagerViewControllerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DCDBCCA71A2D7E5C008B219F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = net.nakajijapan;
+				TargetAttributes = {
+					DCDBCCAE1A2D7E5C008B219F = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					DCDBCCC71A2D7E5C008B219F = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = DCDBCCAE1A2D7E5C008B219F;
+					};
+				};
+			};
+			buildConfigurationList = DCDBCCAA1A2D7E5C008B219F /* Build configuration list for PBXProject "NKJPagerViewController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DCDBCCA61A2D7E5C008B219F;
+			productRefGroup = DCDBCCB01A2D7E5C008B219F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DCDBCCAE1A2D7E5C008B219F /* NKJPagerViewController */,
+				DCDBCCC71A2D7E5C008B219F /* NKJPagerViewControllerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DCDBCCAD1A2D7E5C008B219F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCDBCCBE1A2D7E5C008B219F /* Main.storyboard in Resources */,
+				DCDBCCC31A2D7E5C008B219F /* LaunchScreen.xib in Resources */,
+				DCDBCCC01A2D7E5C008B219F /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCDBCCC61A2D7E5C008B219F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DCDBCCAB1A2D7E5C008B219F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCDBCCDB1A2D8E47008B219F /* NKJPagerViewController.m in Sources */,
+				DCDBCCDE1A2D8E5A008B219F /* ContentViewController.m in Sources */,
+				DCDBCCBB1A2D7E5C008B219F /* ViewController.m in Sources */,
+				DCDBCCB81A2D7E5C008B219F /* AppDelegate.m in Sources */,
+				DCDBCCB51A2D7E5C008B219F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCDBCCC41A2D7E5C008B219F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCDBCCCF1A2D7E5C008B219F /* NKJPagerViewControllerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DCDBCCCA1A2D7E5C008B219F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCDBCCAE1A2D7E5C008B219F /* NKJPagerViewController */;
+			targetProxy = DCDBCCC91A2D7E5C008B219F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DCDBCCBC1A2D7E5C008B219F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DCDBCCBD1A2D7E5C008B219F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DCDBCCC11A2D7E5C008B219F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DCDBCCC21A2D7E5C008B219F /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DCDBCCD01A2D7E5C008B219F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DCDBCCD11A2D7E5C008B219F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DCDBCCD31A2D7E5C008B219F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = NKJPagerViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DCDBCCD41A2D7E5C008B219F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = NKJPagerViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DCDBCCD61A2D7E5C008B219F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = NKJPagerViewControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NKJPagerViewController.app/NKJPagerViewController";
+			};
+			name = Debug;
+		};
+		DCDBCCD71A2D7E5C008B219F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = NKJPagerViewControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NKJPagerViewController.app/NKJPagerViewController";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DCDBCCAA1A2D7E5C008B219F /* Build configuration list for PBXProject "NKJPagerViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCDBCCD01A2D7E5C008B219F /* Debug */,
+				DCDBCCD11A2D7E5C008B219F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCDBCCD21A2D7E5C008B219F /* Build configuration list for PBXNativeTarget "NKJPagerViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCDBCCD31A2D7E5C008B219F /* Debug */,
+				DCDBCCD41A2D7E5C008B219F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCDBCCD51A2D7E5C008B219F /* Build configuration list for PBXNativeTarget "NKJPagerViewControllerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCDBCCD61A2D7E5C008B219F /* Debug */,
+				DCDBCCD71A2D7E5C008B219F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DCDBCCA71A2D7E5C008B219F /* Project object */;
+}

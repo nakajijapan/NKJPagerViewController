@@ -1,0 +1,25 @@
+# LLVM をベースにする
+BasedOnStyle: LLVM
+
+# Indent Width
+IndentWidth: 4
+
+# Indent
+UseTab: Never
+
+# The column limit
+ColumnLimit: 180
+
+# Add a space after @property in Objective-C
+ObjCSpaceAfterProperty: true
+
+# Add a space in front of an Objective-C protocol list
+ObjCSpaceBeforeProtocolList: true
+
+# NSString *string
+PointerBindsToType: false
+
+# Like Attach, but break before braces on function, namespace and class definitions
+BreakBeforeBraces: Linux
+
+AllowShortFunctionsOnASingleLine: false
