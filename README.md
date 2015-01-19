@@ -1,5 +1,7 @@
 # NKJPagerViewController
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nakajijapan/NKJPagerViewController?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 NKJPagerViewController is like a FragmentsTabsPager, which is in Android.
 It contains an endlessly scrollable UIScrollView.
 
