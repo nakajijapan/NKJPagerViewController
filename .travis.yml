@@ -1,0 +1,11 @@
+language: objective-c
+osx_image: xcode611
+
+before_install:
+  - gem install xcpretty
+  - brew update
+  - brew uninstall xctool
+  - brew install xctool
+
+script:
+  - make clean test
