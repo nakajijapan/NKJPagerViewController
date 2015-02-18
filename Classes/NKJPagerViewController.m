@@ -312,9 +312,9 @@
 
         if (fabs(delta) >= 1.0f) {
             if (delta > 0) {
-                [self scrollWithDirection:0];
+                [self performSelector:@selector(scrollViewDidEndDirection:) withObject:[NSNumber numberWithInteger:0] afterDelay:0];
             } else {
-                [self scrollWithDirection:1];
+                [self performSelector:@selector(scrollViewDidEndDirection:) withObject:[NSNumber numberWithInteger:1] afterDelay:0];
             }
         }
     }
@@ -425,6 +425,11 @@
     } else {
         self.tabsView.contentOffset = CGPointMake(self.tabsView.contentOffset.x + buttonSize, 0);
     }
+}
+
+- (void)scrollViewDidEndDirection:(NSNumber *)direction
+{
+    [self scrollWithDirection:[direction integerValue]];
 }
 
 @end
