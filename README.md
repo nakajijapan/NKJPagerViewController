@@ -1,18 +1,11 @@
 # NKJPagerViewController
 
-[![Version](https://img.shields.io/cocoapods/v/NKJPagerViewController.svg?style=flat)](http://cocoadocs.org/docsets/NKJPagerViewController)
-[![License](https://img.shields.io/cocoapods/l/NKJPagerViewController.svg?style=flat)](http://cocoadocs.org/docsets/NKJPagerViewController)
-[![Platform](https://img.shields.io/cocoapods/p/NKJPagerViewController.svg?style=flat)](http://cocoadocs.org/docsets/NKJPagerViewController)
-
-
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nakajijapan/NKJPagerViewController?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-NKJPagerViewController is like a FragmentsTabsPager, which is in Android.
+NKJPagerViewController is a PagerTabStrip, which is in Android.
 It contains an endlessly scrollable UIScrollView.
 
 <img src="./swipe.gif" width="300" />
 
-This viewController inspired [ICViewPager](https://github.com/iltercengiz/ICViewPager). The biggest of difference is to infinitely swipe page.
+This viewController inspired [ICViewPager](https://github.com/iltercengiz/ICViewPager). The biggest of difference is to endlessly swipe page.
 
 ## Requirements
 
