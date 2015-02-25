@@ -14,7 +14,7 @@ build:
 	xcodebuild \
 		-project $(PROJECT) \
 		-scheme $(SCHEME_TARGET) \
-		build
+		build \
 		-sdk iphoneos \
 		-configuration Debug \
 		TEST_AFTER_BUILD=YES \
