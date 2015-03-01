@@ -121,7 +121,7 @@
         tabView.tag = i;
         CGRect frame = tabView.frame;
         frame.origin.x = contentSizeWidth;
-        frame.size.width = tabView.frame.size.width;
+        frame.size.width = [self.dataSource widthOfTabView];
         tabView.frame = frame;
         tabView.userInteractionEnabled = YES;
 
