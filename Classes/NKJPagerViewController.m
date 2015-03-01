@@ -112,6 +112,10 @@
 
     NSInteger contentSizeWidth = 0;
     for (NSUInteger i = 0; i < self.tabCount; i++) {
+        
+        if (self.tabs.count >= self.tabCount) {
+            continue;
+        }
 
         UIView *tabView = [self.dataSource viewPager:self viewForTabAtIndex:i];
         tabView.tag = i;
