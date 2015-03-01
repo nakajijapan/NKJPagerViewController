@@ -1,11 +1,11 @@
 # NKJPagerViewController
 
-NKJPagerViewController is like a FragmentsTabsPager, which is in Android.
+NKJPagerViewController is a PagerTabStrip, which is in Android.
 It contains an endlessly scrollable UIScrollView.
 
 <img src="./swipe.gif" width="300" />
 
-This viewController inspired [ICViewPager](https://github.com/iltercengiz/ICViewPager). The biggest of difference is to infinitely swipe page.
+This viewController inspired [ICViewPager](https://github.com/iltercengiz/ICViewPager). The biggest of difference is to endlessly swipe page.
 
 ## Requirements
 
