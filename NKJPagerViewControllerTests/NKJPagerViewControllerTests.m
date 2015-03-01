@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "NKJPagerViewController.h"
+#import "ViewController.h"
 
 @interface NKJPagerViewControllerTests : XCTestCase <NKJPagerViewDataSource>
 @property NKJPagerViewController *pagerViewController;
@@ -18,32 +19,34 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    
-    self.pagerViewController = [[NKJPagerViewController alloc] init];
+    self.pagerViewController = [[NKJPagerViewController alloc] initWithNibName:nil bundle:nil];
     self.pagerViewController.dataSource = self;
     [UIApplication.sharedApplication.delegate.window setRootViewController:self.pagerViewController];
+    [self.pagerViewController viewDidLoad];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
-    
     self.pagerViewController = nil;
 }
 
+- (void)testTabsNotNil {
+    XCTAssertTrue(self.pagerViewController.tabs != nil , "");
+}
+
 - (void)testTabsCount {
-    XCTAssert(self.pagerViewController.tabs.count == 10 , "Count of tabs is correct.");
+    XCTAssertTrue(self.pagerViewController.tabs.count == 10 , "Count of tabs is correct.");
 }
 
 - (void)testTabsViewOfSubViewsCount {
-    XCTAssert(self.pagerViewController.tabsView.subviews.count == 10 , "Count of subviews is correct.");
+    [self.pagerViewController viewDidLoad];
+    XCTAssertTrue(self.pagerViewController.tabsView.subviews.count == 10 , "Count of subviews is correct.");
 }
 
 - (void)testTabViewOfWidth {
     UIView *view = (UIView *)self.pagerViewController.tabs[0];
-    NSLog(@"%@", view);
-    XCTAssert(view.frame.size.width == 125 , "Width of tabView is correct.");
+    XCTAssertTrue(view != nil);
+    XCTAssertTrue(view.frame.size.width == 125);
 }
 
 #pragma mark - NKJPagerViewDataSource
