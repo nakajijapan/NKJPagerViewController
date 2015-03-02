@@ -112,12 +112,16 @@
 
     NSInteger contentSizeWidth = 0;
     for (NSUInteger i = 0; i < self.tabCount; i++) {
+        
+        if (self.tabs.count >= self.tabCount) {
+            continue;
+        }
 
         UIView *tabView = [self.dataSource viewPager:self viewForTabAtIndex:i];
         tabView.tag = i;
         CGRect frame = tabView.frame;
         frame.origin.x = contentSizeWidth;
-        frame.size.width = tabView.frame.size.width;
+        frame.size.width = [self.dataSource widthOfTabView];
         tabView.frame = frame;
         tabView.userInteractionEnabled = YES;
 
