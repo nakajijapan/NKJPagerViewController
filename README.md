@@ -3,6 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/NKJPagerViewController.svg?style=flat)](http://cocoadocs.org/docsets/NKJPagerViewController)
 [![License](https://img.shields.io/cocoapods/l/NKJPagerViewController.svg?style=flat)](http://cocoadocs.org/docsets/NKJPagerViewController)
 [![Platform](https://img.shields.io/cocoapods/p/NKJPagerViewController.svg?style=flat)](http://cocoadocs.org/docsets/NKJPagerViewController)
+[![Build Status](https://travis-ci.org/nakajijapan/NKJPagerViewController.svg?branch=master)](https://travis-ci.org/nakajijapan/NKJPagerViewController)
 
 
 NKJPagerViewController is a PagerTabStrip, which is in Android.
