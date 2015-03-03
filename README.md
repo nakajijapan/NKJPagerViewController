@@ -1,5 +1,10 @@
 # NKJPagerViewController
 
+[![Version](https://img.shields.io/cocoapods/v/NKJPagerViewController.svg?style=flat)](http://cocoadocs.org/docsets/NKJPagerViewController)
+[![License](https://img.shields.io/cocoapods/l/NKJPagerViewController.svg?style=flat)](http://cocoadocs.org/docsets/NKJPagerViewController)
+[![Platform](https://img.shields.io/cocoapods/p/NKJPagerViewController.svg?style=flat)](http://cocoadocs.org/docsets/NKJPagerViewController)
+
+
 NKJPagerViewController is a PagerTabStrip, which is in Android.
 It contains an endlessly scrollable UIScrollView.
 
