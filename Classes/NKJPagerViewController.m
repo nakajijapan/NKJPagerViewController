@@ -403,9 +403,4 @@
     }
 }
 
-- (void)scrollViewDidEndDirection:(NSNumber *)direction
-{
-    [self scrollWithDirection:[direction integerValue]];
-}
-
 @end
