@@ -23,9 +23,6 @@
 @property (nonatomic) NSInteger activeContentIndex;
 @property (nonatomic) NSInteger activeTabIndex;
 
-@property (getter=isAnimatingToTab, assign) BOOL animatingToTab;
-@property CGPoint movingOffset;
-
 @end
 
 @implementation NKJPagerViewController
@@ -64,7 +61,6 @@
     self.heightOfTabView = 44.0;
     self.yPositionOfTabView = 64.0;
     self.tabsViewBackgroundColor = kTabsViewBackgroundColor;
-    self.animatingToTab = NO;
 }
 
 - (void)defaultSetUp
@@ -202,8 +198,6 @@
 }
 - (void)trasitionTabViewWithView:(UIView *)view
 {
-    self.animatingToTab = YES;
-
     CGFloat buttonSize = [self.dataSource widthOfTabView];
     CGFloat sizeSpace = ([[UIScreen mainScreen] bounds].size.width - buttonSize) / 2;
 
@@ -213,7 +207,6 @@
             if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
                 [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
             }
-            self.animatingToTab = NO;
         }];
 }
 
@@ -281,36 +274,11 @@
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    self.movingOffset = scrollView.contentOffset;
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSInteger buttonSize = [self.dataSource widthOfTabView];
+    if (scrollView.tag == kTabViewTag) { // To scroll
 
-    if (scrollView.tag == 0) { // To move menutab
-        CGPoint contentOffset = self.tabsView.contentOffset;
-        CGFloat offset = (scrollView.contentOffset.x - self.movingOffset.x) * (buttonSize / CGRectGetWidth(self.view.frame));
-
-        // NSLog(@"offset(%f) self.movingOffset(%@) scrolloffset(%@)", offset, NSStringFromCGPoint(self.movingOffset), NSStringFromCGPoint(scrollView.contentOffset));
-
-        if (self.isAnimatingToTab) {
-            return;
-        }
-
-        // Because the coordinates become negative...
-        if (scrollView.contentOffset.y < 0) {
-            self.movingOffset = scrollView.contentOffset;
-            return;
-        }
-
-        contentOffset.x += offset;
-        self.tabsView.contentOffset = contentOffset;
-        self.movingOffset = scrollView.contentOffset;
-    } else if (scrollView.tag == kTabViewTag) { // To scroll
-
+        NSInteger buttonSize = [self.dataSource widthOfTabView];
         CGFloat position = self.tabsView.contentOffset.x / buttonSize;
         CGFloat delta = position - (CGFloat)self.leftTabIndex;
 
