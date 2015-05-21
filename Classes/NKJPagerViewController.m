@@ -205,13 +205,7 @@
     CGFloat buttonSize = [self.dataSource widthOfTabView];
     CGFloat sizeSpace = ([[UIScreen mainScreen] bounds].size.width - buttonSize) / 2;
 
-    [UIView animateWithDuration:0.3
-        animations:^{ self.tabsView.contentOffset = CGPointMake(view.frame.origin.x - sizeSpace, 0); }
-        completion:^(BOOL finished) {
-            if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
-                [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
-            }
-        }];
+    [self.tabsView setContentOffset:CGPointMake(view.frame.origin.x - sizeSpace, 0) animated:YES];
 }
 
 - (void)handleSwipeGesture:(UISwipeGestureRecognizer *)sender
@@ -292,6 +286,15 @@
             } else {
                 [self scrollWithDirection:1];
             }
+        }
+    }
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    if ([scrollView isEqual:self.tabsView]) {
+        if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
+            [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
         }
     }
 }
