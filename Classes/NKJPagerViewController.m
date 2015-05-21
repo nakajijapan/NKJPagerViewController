@@ -197,10 +197,10 @@
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender
 {
-    [self trasitionTabViewWithView:sender.view];
+    [self transitionTabViewWithView:sender.view];
     [self selectTabAtIndex:sender.view.tag];
 }
-- (void)trasitionTabViewWithView:(UIView *)view
+- (void)transitionTabViewWithView:(UIView *)view
 {
     CGFloat buttonSize = [self.dataSource widthOfTabView];
     CGFloat sizeSpace = ([[UIScreen mainScreen] bounds].size.width - buttonSize) / 2;
@@ -212,12 +212,12 @@
 {
     if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
         UIView *activeTabView = [self tabViewAtIndex:4];
-        [self trasitionTabViewWithView:activeTabView];
+        [self transitionTabViewWithView:activeTabView];
         [self selectTabAtIndex:activeTabView.tag];
 
     } else if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
         UIView *activeTabView = [self tabViewAtIndex:2];
-        [self trasitionTabViewWithView:activeTabView];
+        [self transitionTabViewWithView:activeTabView];
         [self selectTabAtIndex:activeTabView.tag];
         [self scrollWithDirection:1];
     }
@@ -263,7 +263,7 @@
     NSUInteger index = [self indexForViewController:viewController];
     for (UIView *view in self.tabsView.subviews) {
         if (view.tag == index) {
-            [self trasitionTabViewWithView:view];
+            [self transitionTabViewWithView:view];
         }
     }
 
