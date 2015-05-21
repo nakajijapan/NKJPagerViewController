@@ -288,9 +288,9 @@
 
         if (fabs(delta) >= 1.0f) {
             if (delta > 0) {
-                [self performSelector:@selector(scrollViewDidEndDirection:) withObject:[NSNumber numberWithInteger:0] afterDelay:0];
+                [self scrollWithDirection:0];
             } else {
-                [self performSelector:@selector(scrollViewDidEndDirection:) withObject:[NSNumber numberWithInteger:1] afterDelay:0];
+                [self scrollWithDirection:1];
             }
         }
     }
