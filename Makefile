@@ -36,7 +36,6 @@ test:
 		-project $(PROJECT) \
 		-scheme $(SCHEME_TARGET) \
 		-destination-timeout 1 \
-		-sdk iphonesimulator \
-		-configuration Debug \
-		-destination 'name=iPhone 6'
+		-sdk iphonesimulator8.1 \
+		-configuration Debug 
 
