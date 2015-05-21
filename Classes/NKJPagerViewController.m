@@ -197,33 +197,27 @@
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender
 {
-    [self trasitionTabViewWithView:sender.view];
+    [self transitionTabViewWithView:sender.view];
     [self selectTabAtIndex:sender.view.tag];
 }
-- (void)trasitionTabViewWithView:(UIView *)view
+- (void)transitionTabViewWithView:(UIView *)view
 {
     CGFloat buttonSize = [self.dataSource widthOfTabView];
     CGFloat sizeSpace = ([[UIScreen mainScreen] bounds].size.width - buttonSize) / 2;
 
-    [UIView animateWithDuration:0.3
-        animations:^{ self.tabsView.contentOffset = CGPointMake(view.frame.origin.x - sizeSpace, 0); }
-        completion:^(BOOL finished) {
-            if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
-                [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
-            }
-        }];
+    [self.tabsView setContentOffset:CGPointMake(view.frame.origin.x - sizeSpace, 0) animated:YES];
 }
 
 - (void)handleSwipeGesture:(UISwipeGestureRecognizer *)sender
 {
     if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
         UIView *activeTabView = [self tabViewAtIndex:4];
-        [self trasitionTabViewWithView:activeTabView];
+        [self transitionTabViewWithView:activeTabView];
         [self selectTabAtIndex:activeTabView.tag];
 
     } else if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
         UIView *activeTabView = [self tabViewAtIndex:2];
-        [self trasitionTabViewWithView:activeTabView];
+        [self transitionTabViewWithView:activeTabView];
         [self selectTabAtIndex:activeTabView.tag];
         [self scrollWithDirection:1];
     }
@@ -269,7 +263,7 @@
     NSUInteger index = [self indexForViewController:viewController];
     for (UIView *view in self.tabsView.subviews) {
         if (view.tag == index) {
-            [self trasitionTabViewWithView:view];
+            [self transitionTabViewWithView:view];
         }
     }
 
@@ -288,10 +282,19 @@
 
         if (fabs(delta) >= 1.0f) {
             if (delta > 0) {
-                [self performSelector:@selector(scrollViewDidEndDirection:) withObject:[NSNumber numberWithInteger:0] afterDelay:0];
+                [self scrollWithDirection:0];
             } else {
-                [self performSelector:@selector(scrollViewDidEndDirection:) withObject:[NSNumber numberWithInteger:1] afterDelay:0];
+                [self scrollWithDirection:1];
             }
+        }
+    }
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    if ([scrollView isEqual:self.tabsView]) {
+        if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
+            [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
         }
     }
 }
@@ -401,11 +404,6 @@
     } else {
         self.tabsView.contentOffset = CGPointMake(self.tabsView.contentOffset.x + buttonSize, 0);
     }
-}
-
-- (void)scrollViewDidEndDirection:(NSNumber *)direction
-{
-    [self scrollWithDirection:[direction integerValue]];
 }
 
 @end
