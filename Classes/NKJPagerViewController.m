@@ -161,9 +161,13 @@
             [self.delegate viewPagerDidAddContentView];
         } else {
             self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-            NSDictionary *views = @{ @"contentView" : self.contentView };
+            NSDictionary *views = @{
+                                    @"contentView"       : self.contentView,
+                                    @"topLayoutGuide"    : self.topLayoutGuide,
+                                    @"bottomLayoutGuide" : self.bottomLayoutGuide
+                                    };
             [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[contentView]-0-|" options:0 metrics:nil views:views]];
-            [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-64-[contentView]-0-|" options:0 metrics:nil views:views]];
+            [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-0-[contentView]-0-[bottomLayoutGuide]" options:0 metrics:nil views:views]];
         }
     }
 
