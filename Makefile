@@ -20,7 +20,7 @@ build:
 		TEST_AFTER_BUILD=YES \
 		| xcpretty -c
 
-test:
+test2:
 	xctool \
 		-configuration Debug \
 		-sdk iphonesimulator \
@@ -30,3 +30,13 @@ test:
 		-parallelize -freshSimulator -freshInstall --showTasks \
 		TEST_HOST= \
 		TEST_AFTER_BUILD=YES
+
+test:
+	xcodebuild test \
+		-project $(PROJECT) \
+		-scheme $(SCHEME_TARGET) \
+		-destination-timeout 1 \
+		-sdk iphonesimulator8.1 \
+		-configuration Debug \
+		-destination 'name=iPhone 6' 
+
