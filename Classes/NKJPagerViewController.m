@@ -252,6 +252,13 @@
 
 #pragma mark - UIPageViewControllerDelegate
 
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
+{
+    if ([self.delegate respondsToSelector:@selector(viewPagerWillTransition:)]) {
+        [self.delegate viewPagerWillTransition:self];
+    }
+}
+
 - (void)pageViewController:(UIPageViewController *)pageViewController
          didFinishAnimating:(BOOL)finished
     previousViewControllers:(NSArray *)previousViewControllers

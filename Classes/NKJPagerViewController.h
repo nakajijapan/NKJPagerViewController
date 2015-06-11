@@ -44,6 +44,7 @@
 @protocol NKJPagerViewDelegate <NSObject>
 
 @optional
+- (void)viewPagerWillTransition:(NKJPagerViewController *)viewPager;
 - (void)viewPager:(NKJPagerViewController *)viewPager didSwitchAtIndex:(NSInteger)index withTabs:(NSArray *)tabs;
 - (void)viewPagerDidAddContentView;
 @end
