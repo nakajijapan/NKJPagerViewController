@@ -59,7 +59,7 @@
     self.pageViewController.delegate = self;
 
     self.heightOfTabView = 49.f;
-    self.yPositionOfTabView = 64.f;
+    self.yPositionOfTabView = CGRectGetHeight(self.navigationController.navigationBar.bounds);
     self.tabsViewBackgroundColor = kTabsViewBackgroundColor;
 }
 
