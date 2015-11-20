@@ -176,21 +176,12 @@
     }
 }
 
-- (void)viewWillLayoutSubviews
-{
-}
-
 #pragma mark - Life Cycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self defaultSetUp];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Gesture
