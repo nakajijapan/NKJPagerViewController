@@ -61,6 +61,7 @@
     self.heightOfTabView = 49.f;
     self.yPositionOfTabView = CGRectGetHeight(self.navigationController.navigationBar.bounds);
     self.tabsViewBackgroundColor = kTabsViewBackgroundColor;
+    self.infiniteSwipe = YES;
 }
 
 - (void)defaultSetUp
@@ -92,18 +93,28 @@
         self.tabsView.showsVerticalScrollIndicator = NO;
         self.tabsView.tag = kTabViewTag;
         self.tabsView.delegate = self;
-        self.tabsView.bounces = NO;
-        self.tabsView.scrollEnabled = NO;
 
         [self.view insertSubview:self.tabsView atIndex:0];
 
-        UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-        leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-        [self.tabsView addGestureRecognizer:leftSwipeGestureRecognizer];
+        if (self.isInfinitSwipe) {
+            
+            self.tabsView.bounces = NO;
+            self.tabsView.scrollEnabled = NO;
 
-        UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-        rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-        [self.tabsView addGestureRecognizer:rightSwipeGestureRecognizer];
+            UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+            leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+            [self.tabsView addGestureRecognizer:leftSwipeGestureRecognizer];
+            
+            UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+            rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+            [self.tabsView addGestureRecognizer:rightSwipeGestureRecognizer];
+            
+        } else {
+            
+            self.tabsView.bounces = NO;
+            self.tabsView.scrollEnabled = NO;
+            
+        }
     }
 
     NSInteger contentSizeWidth = 0;
@@ -210,7 +221,10 @@
         UIView *activeTabView = [self tabViewAtIndex:2];
         [self transitionTabViewWithView:activeTabView];
         [self selectTabAtIndex:activeTabView.tag];
-        [self scrollWithDirection:1];
+
+        if (!self.isInfinitSwipe) {
+            [self scrollWithDirection:1];
+        }
     }
 }
 
@@ -272,19 +286,24 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.tag == kTabViewTag) { // To scroll
+    if (self.isInfinitSwipe) {
 
-        NSInteger buttonSize = [self.dataSource widthOfTabView];
-        CGFloat position = self.tabsView.contentOffset.x / buttonSize;
-        CGFloat delta = position - (CGFloat)self.leftTabIndex;
-
-        if (fabs(delta) >= 1.0f) {
-            if (delta > 0) {
-                [self scrollWithDirection:0];
-            } else {
-                [self scrollWithDirection:1];
+        // To scroll
+        if (scrollView.tag == kTabViewTag) {
+            
+            NSInteger buttonSize = [self.dataSource widthOfTabView];
+            CGFloat position = self.tabsView.contentOffset.x / buttonSize;
+            CGFloat delta = position - (CGFloat)self.leftTabIndex;
+            
+            if (fabs(delta) >= 1.0f) {
+                if (delta > 0) {
+                    [self scrollWithDirection:0];
+                } else {
+                    [self scrollWithDirection:1];
+                }
             }
         }
+
     }
 }
 

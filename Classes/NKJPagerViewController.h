@@ -27,6 +27,7 @@
 @property CGFloat heightOfTabView;
 @property CGFloat yPositionOfTabView;
 @property UIColor *tabsViewBackgroundColor;
+@property (getter = isInfinitSwipe, assign) BOOL infiniteSwipe;
 @end
 
 #pragma mark NKJPagerViewDataSource
