@@ -58,8 +58,8 @@
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
 
-    self.heightOfTabView = 49.f;
-    self.yPositionOfTabView = CGRectGetHeight(self.navigationController.navigationBar.bounds);
+    self.heightOfTabView = 44.f;
+    self.yPositionOfTabView = 64.f;
     self.tabsViewBackgroundColor = kTabsViewBackgroundColor;
     self.infiniteSwipe = YES;
 }
