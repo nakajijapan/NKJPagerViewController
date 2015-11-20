@@ -14,7 +14,7 @@
 #define kTabsViewBackgroundColor [UIColor colorWithRed:234.0 / 255.0 green:234.0 / 255.0 blue:234.0 / 255.0 alpha:0.75]
 #define kContentViewBackgroundColor [UIColor colorWithRed:248.0 / 255.0 green:248.0 / 255.0 blue:248.0 / 255.0 alpha:0.75]
 
-@interface NKJPagerViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
+@interface NKJPagerViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 @property CGFloat leftTabIndex;
 @property NSInteger tabCount;

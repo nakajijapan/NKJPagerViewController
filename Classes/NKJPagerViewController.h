@@ -11,7 +11,7 @@
 @protocol NKJPagerViewDataSource;
 @protocol NKJPagerViewDelegate;
 
-@interface NKJPagerViewController : UIViewController
+@interface NKJPagerViewController : UIViewController <UIScrollViewDelegate>
 
 @property NSMutableArray *tabs;     // Views
 @property NSMutableArray *contents; // ViewControllers
