@@ -34,7 +34,7 @@
 
 @protocol NKJPagerViewDataSource <NSObject>
 - (NSUInteger)numberOfTabView;
-- (NSInteger)widthOfTabView;
+- (CGFloat)widthOfTabView;
 
 - (UIView *)viewPager:(NKJPagerViewController *)viewPager viewForTabAtIndex:(NSUInteger)index;
 - (UIViewController *)viewPager:(NKJPagerViewController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index;

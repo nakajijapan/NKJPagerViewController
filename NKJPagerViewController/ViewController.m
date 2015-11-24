@@ -58,9 +58,9 @@
     return vc;
 }
 
-- (NSInteger)widthOfTabView
+- (CGFloat)widthOfTabView
 {
-    return 160;
+    return 160.f;
 }
 
 #pragma mark - NKJPagerViewDelegate

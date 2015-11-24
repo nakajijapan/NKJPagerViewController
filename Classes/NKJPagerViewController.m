@@ -311,7 +311,7 @@
         // To scroll
         if (scrollView.tag == kTabViewTag) {
             
-            NSInteger buttonSize = [self.dataSource widthOfTabView];
+            CGFloat buttonSize = [self.dataSource widthOfTabView];
             CGFloat position = self.tabsView.contentOffset.x / buttonSize;
             CGFloat delta = position - (CGFloat)self.leftTabIndex;
             
