@@ -216,7 +216,7 @@
         
         if (view.frame.origin.x <= sizeSpace) {
             [self.tabsView setContentOffset:CGPointMake(0.f, 0.f) animated:YES];
-        } else if (view.frame.origin.x - sizeSpace >= rightEnd) {
+        } else if (view.frame.origin.x >= rightEnd + sizeSpace) {
             [self.tabsView setContentOffset:CGPointMake(rightEnd, 0.f) animated:YES];
         } else {
             [self.tabsView setContentOffset:CGPointMake(view.frame.origin.x - sizeSpace, 0.f) animated:YES];
