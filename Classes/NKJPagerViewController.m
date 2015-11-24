@@ -206,8 +206,20 @@
 {
     CGFloat buttonSize = [self.dataSource widthOfTabView];
     CGFloat sizeSpace = ([[UIScreen mainScreen] bounds].size.width - buttonSize) / 2;
-
-    [self.tabsView setContentOffset:CGPointMake(view.frame.origin.x - sizeSpace, 0) animated:YES];
+    
+    if (self.isInfinitSwipe) {
+        [self.tabsView setContentOffset:CGPointMake(view.frame.origin.x - sizeSpace, 0) animated:YES];
+    } else {
+        CGFloat rightEnd = self.tabsView.contentSize.width - [[UIScreen mainScreen] bounds].size.width;
+        
+        if (view.frame.origin.x <= sizeSpace) {
+            [self.tabsView setContentOffset:CGPointMake(0.f, 0.f) animated:YES];
+        } else if (view.frame.origin.x - sizeSpace >= rightEnd) {
+            [self.tabsView setContentOffset:CGPointMake(rightEnd, 0.f) animated:YES];
+        } else {
+            [self.tabsView setContentOffset:CGPointMake(view.frame.origin.x - sizeSpace, 0.f) animated:YES];
+        }
+    }
 }
 
 - (void)handleSwipeGesture:(UISwipeGestureRecognizer *)sender
