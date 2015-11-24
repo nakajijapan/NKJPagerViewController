@@ -101,11 +101,13 @@
             self.tabsView.bounces = NO;
             self.tabsView.scrollEnabled = NO;
 
-            UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+            UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                                             action:@selector(handleSwipeGesture:)];
             leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
             [self.tabsView addGestureRecognizer:leftSwipeGestureRecognizer];
             
-            UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+            UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                                              action:@selector(handleSwipeGesture:)];
             rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
             [self.tabsView addGestureRecognizer:rightSwipeGestureRecognizer];
             
