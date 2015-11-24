@@ -294,6 +294,12 @@
     }
 
     _activeContentIndex = index;
+    
+    if (completed) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self pageAnimationDidFinish];
+        });
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -323,19 +329,22 @@
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    if ([scrollView isEqual:self.tabsView]) {
-        if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
-            [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
-        }
-    }
 }
 
 #pragma mark - Private Methods
+
+- (void)pageAnimationDidFinish
+{
+    if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
+        [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+    }
+}
 
 - (void)setActiveContentIndex:(NSInteger)activeContentIndex
 {
 
     UIViewController *viewController = [self viewControllerAtIndex:activeContentIndex];
+    __weak typeof(self) weakSelf = self;
 
     if (!viewController) {
         viewController = [[UIViewController alloc] init];
@@ -348,7 +357,10 @@
         [self.pageViewController setViewControllers:@[ viewController ]
                                           direction:UIPageViewControllerNavigationDirectionForward
                                            animated:NO
-                                         completion:^(BOOL completed){// none
+                                         completion:^(BOOL completed){
+
+                                             [weakSelf pageAnimationDidFinish];
+
                                          }];
 
     } else {
@@ -367,7 +379,10 @@
         [self.pageViewController setViewControllers:@[ viewController ]
                                           direction:direction
                                            animated:YES
-                                         completion:^(BOOL completed){// none
+                                         completion:^(BOOL completed){
+
+                                             [weakSelf pageAnimationDidFinish];
+
                                          }];
     }
 

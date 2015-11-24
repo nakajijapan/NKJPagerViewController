@@ -20,13 +20,9 @@
 
     self.dataSource = self;
     self.delegate = self;
+    self.infiniteSwipe = NO;
 
     [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - NKJPagerViewDataSource
