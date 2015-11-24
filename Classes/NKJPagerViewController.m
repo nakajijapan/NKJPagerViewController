@@ -113,8 +113,8 @@
             
         } else {
             
-            self.tabsView.bounces = NO;
-            self.tabsView.scrollEnabled = NO;
+            self.tabsView.bounces = YES;
+            self.tabsView.scrollEnabled = YES;
             
         }
     }
