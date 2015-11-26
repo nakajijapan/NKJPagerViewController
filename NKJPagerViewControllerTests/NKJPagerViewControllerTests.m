@@ -56,7 +56,7 @@
     return 10;
 }
 
-- (NSInteger)widthOfTabView
+- (CGFloat)widthOfTabView
 {
     return 125;
 }
