@@ -37,7 +37,7 @@ extern const NSInteger NKJPagerViewControllerContentViewTag;
 
 @protocol NKJPagerViewDataSource <NSObject>
 - (NSUInteger)numberOfTabView;
-- (CGFloat)widthOfTabView;
+- (CGFloat)widthOfTabViewWithIndex:(NSInteger)index;
 
 - (UIView *)viewPager:(NKJPagerViewController *)viewPager viewForTabAtIndex:(NSUInteger)index;
 - (UIViewController *)viewPager:(NKJPagerViewController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index;
@@ -49,6 +49,7 @@ extern const NSInteger NKJPagerViewControllerContentViewTag;
 
 @optional
 - (void)viewPagerWillTransition:(NKJPagerViewController *)viewPager;
+- (void)viewPager:(NKJPagerViewController *)viewPager willSwitchAtIndex:(NSInteger)index withTabs:(NSArray *)tabs;
 - (void)viewPager:(NKJPagerViewController *)viewPager didSwitchAtIndex:(NSInteger)index withTabs:(NSArray *)tabs;
 - (void)viewPagerDidAddContentView;
 @end

@@ -130,7 +130,7 @@ const NSInteger NKJPagerViewControllerContentViewTag = 24;
         tabView.tag = i;
         CGRect frame = tabView.frame;
         frame.origin.x = contentSizeWidth;
-        frame.size.width = [self.dataSource widthOfTabView];
+        frame.size.width = [self.dataSource widthOfTabViewWithIndex:i];
         tabView.frame = frame;
         tabView.userInteractionEnabled = YES;
 
@@ -149,10 +149,15 @@ const NSInteger NKJPagerViewControllerContentViewTag = 24;
     self.tabsView.contentSize = CGSizeMake(contentSizeWidth, self.heightOfTabView);
 
     // Positioning
-    NSInteger contentOffsetWidth =
-        [self.dataSource widthOfTabView] * 2 + [self.dataSource widthOfTabView] - ([[UIScreen mainScreen] bounds].size.width - [self.dataSource widthOfTabView]) / 2;
-    self.tabsView.contentOffset = CGPointMake(contentOffsetWidth, 0);
-
+    if (self.infiniteSwipe) {
+        CGFloat contentOffsetWidth =
+        [self.dataSource widthOfTabViewWithIndex:0] +
+        [self.dataSource widthOfTabViewWithIndex:1] +
+        [self.dataSource widthOfTabViewWithIndex:2] -
+        ([[UIScreen mainScreen] bounds].size.width - [self.dataSource widthOfTabViewWithIndex:0]) / 2.f;
+        self.tabsView.contentOffset = CGPointMake(contentOffsetWidth, 0);
+    }
+    
     // Add contentView in Superview
     self.contentView = [self.view viewWithTag:NKJPagerViewControllerContentViewTag];
     if (!self.contentView) {
@@ -206,7 +211,7 @@ const NSInteger NKJPagerViewControllerContentViewTag = 24;
 }
 - (void)transitionTabViewWithView:(UIView *)view
 {
-    CGFloat buttonSize = [self.dataSource widthOfTabView];
+    CGFloat buttonSize = [self.dataSource widthOfTabViewWithIndex:view.tag];
     CGFloat sizeSpace = ([[UIScreen mainScreen] bounds].size.width - buttonSize) / 2;
     
     if (self.isInfinitSwipe) {
@@ -296,6 +301,11 @@ const NSInteger NKJPagerViewControllerContentViewTag = 24;
     _activeContentIndex = index;
     
     if (completed) {
+        
+        if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
+            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+        }
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self pageAnimationDidFinish];
         });
@@ -309,9 +319,9 @@ const NSInteger NKJPagerViewControllerContentViewTag = 24;
     if (self.isInfinitSwipe) {
 
         // To scroll
-        if (scrollView.tag == NKJPagerViewControllerTabViewTag) {
+        if (scrollView.tag == NKJPagerViewControllerTabViewTag) { // To scroll
             
-            CGFloat buttonSize = [self.dataSource widthOfTabView];
+            CGFloat buttonSize = [self.dataSource widthOfTabViewWithIndex:self.activeContentIndex];
             CGFloat position = self.tabsView.contentOffset.x / buttonSize;
             CGFloat delta = position - (CGFloat)self.leftTabIndex;
             
@@ -325,10 +335,6 @@ const NSInteger NKJPagerViewControllerContentViewTag = 24;
         }
 
     }
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
 }
 
 #pragma mark - Private Methods
@@ -354,6 +360,11 @@ const NSInteger NKJPagerViewControllerContentViewTag = 24;
 
     if (activeContentIndex == self.activeContentIndex) {
 
+        
+        if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
+            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+        }
+        
         [self.pageViewController setViewControllers:@[ viewController ]
                                           direction:UIPageViewControllerNavigationDirectionForward
                                            animated:NO
@@ -374,6 +385,10 @@ const NSInteger NKJPagerViewControllerContentViewTag = 24;
             direction = UIPageViewControllerNavigationDirectionReverse;
         } else {
             direction = UIPageViewControllerNavigationDirectionForward;
+        }
+        
+        if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
+            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
         }
 
         [self.pageViewController setViewControllers:@[ viewController ]
@@ -419,7 +434,7 @@ const NSInteger NKJPagerViewControllerContentViewTag = 24;
 
 - (void)scrollWithDirection:(NSInteger)direction
 {
-    CGFloat buttonSize = [self.dataSource widthOfTabView];
+    CGFloat buttonSize = [self.dataSource widthOfTabViewWithIndex:self.activeContentIndex];
 
     if (direction == 0) {
         UIView *firstView = [self.tabs objectAtIndex:0];
