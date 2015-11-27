@@ -56,9 +56,9 @@
     return 10;
 }
 
-- (CGFloat)widthOfTabView
+- (CGFloat)widthOfTabViewWithIndex:(NSInteger)index
 {
-    return 125;
+    return 125.f;
 }
 
 - (UIView *)viewPager:(NKJPagerViewController *)viewPager viewForTabAtIndex:(NSUInteger)index

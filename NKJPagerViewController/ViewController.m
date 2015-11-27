@@ -58,7 +58,7 @@
     return vc;
 }
 
-- (CGFloat)widthOfTabView
+- (CGFloat)widthOfTabViewWithIndex:(NSInteger)index
 {
     return 160.f;
 }
