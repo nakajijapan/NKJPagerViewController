@@ -8,8 +8,8 @@
 
 #import "NKJPagerViewController.h"
 
-#define kTabViewTag 18
-#define kContentViewTag 24
+const NSInteger NKJPagerViewControllerTabViewTag = 15;
+const NSInteger NKJPagerViewControllerContentViewTag = 24;
 
 #define kTabsViewBackgroundColor [UIColor colorWithRed:234.0 / 255.0 green:234.0 / 255.0 blue:234.0 / 255.0 alpha:0.75]
 #define kContentViewBackgroundColor [UIColor colorWithRed:248.0 / 255.0 green:248.0 / 255.0 blue:248.0 / 255.0 alpha:0.75]
@@ -91,7 +91,7 @@
         self.tabsView.scrollsToTop = NO;
         self.tabsView.showsHorizontalScrollIndicator = NO;
         self.tabsView.showsVerticalScrollIndicator = NO;
-        self.tabsView.tag = kTabViewTag;
+        self.tabsView.tag = NKJPagerViewControllerTabViewTag;
         self.tabsView.delegate = self;
 
         [self.view insertSubview:self.tabsView atIndex:0];
@@ -154,7 +154,7 @@
     self.tabsView.contentOffset = CGPointMake(contentOffsetWidth, 0);
 
     // Add contentView in Superview
-    self.contentView = [self.view viewWithTag:kContentViewTag];
+    self.contentView = [self.view viewWithTag:NKJPagerViewControllerContentViewTag];
     if (!self.contentView) {
 
         // Populate pageViewController.view in contentView
@@ -162,7 +162,7 @@
         self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         self.contentView.backgroundColor = kContentViewBackgroundColor;
         self.contentView.bounds = self.view.bounds;
-        self.contentView.tag = kContentViewTag;
+        self.contentView.tag = NKJPagerViewControllerContentViewTag;
         [self.view insertSubview:self.contentView atIndex:0];
 
         // constraints
@@ -309,7 +309,7 @@
     if (self.isInfinitSwipe) {
 
         // To scroll
-        if (scrollView.tag == kTabViewTag) {
+        if (scrollView.tag == NKJPagerViewControllerTabViewTag) {
             
             CGFloat buttonSize = [self.dataSource widthOfTabView];
             CGFloat position = self.tabsView.contentOffset.x / buttonSize;

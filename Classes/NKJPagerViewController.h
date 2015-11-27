@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+extern const NSInteger NKJPagerViewControllerTabViewTag;
+extern const NSInteger NKJPagerViewControllerContentViewTag;
+
 @protocol NKJPagerViewDataSource;
 @protocol NKJPagerViewDelegate;
 
