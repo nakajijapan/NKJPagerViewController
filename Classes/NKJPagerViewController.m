@@ -186,7 +186,11 @@ const NSInteger NKJPagerViewControllerContentViewTag = 24;
     }
 
     // Setting Active Index
-    [self selectTabAtIndex:3];
+    if (self.infiniteSwipe) {
+        [self selectTabAtIndex:3];
+    } else {
+        [self selectTabAtIndex:0];
+    }
 
     // Default Design
     if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
