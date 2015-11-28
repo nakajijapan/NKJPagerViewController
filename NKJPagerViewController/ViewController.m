@@ -20,7 +20,7 @@
 
     self.dataSource = self;
     self.delegate = self;
-    self.infiniteSwipe = NO;
+    self.infiniteSwipe = YES;
 
     [super viewDidLoad];
 }
