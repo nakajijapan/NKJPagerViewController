@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "nakajijapan" => "pp.kupepo.gattyanmo@gmail.com" }
   s.social_media_url   = "https://twitter.com/nakajijapan"
-  s.platform     = :ios
+  s.platform     = :ios, '7.0'
   s.source       = { :git => "https://github.com/nakajijapan/NKJPagerViewController.git", :tag => s.version.to_s }
   s.source_files = "Classes/**/*.{h,m}"
   s.requires_arc = true
