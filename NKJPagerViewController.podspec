@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NKJPagerViewController"
-  s.version      = "0.3.3"
+  s.version      = "1.0.0"
   s.summary      = "NKJPagerViewController is like a PagerTabStrip, which is in Android. It contains an endlessly scrollable UIScrollView."
   s.homepage     = "https://github.com/nakajijapan/NKJPagerViewController"
   s.screenshots  = "https://raw.githubusercontent.com/nakajijapan/NKJPagerViewController/master/swipe.gif"
