@@ -46,7 +46,7 @@
 - (void)testTabViewOfWidth {
     UIView *view = (UIView *)self.pagerViewController.tabs[0];
     XCTAssertTrue(view != nil);
-    XCTAssertTrue(view.frame.size.width == 125);
+    XCTAssertTrue(view.frame.size.width == 125.f);
 }
 
 #pragma mark - NKJPagerViewDataSource
@@ -56,14 +56,14 @@
     return 10;
 }
 
-- (NSInteger)widthOfTabView
+- (CGFloat)widthOfTabViewWithIndex:(NSInteger)index
 {
-    return 125;
+    return 125.f;
 }
 
 - (UIView *)viewPager:(NKJPagerViewController *)viewPager viewForTabAtIndex:(NSUInteger)index
 {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width / 3, 44)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.f, 0.f, [[UIScreen mainScreen] bounds].size.width / 3.f, 44.f)];
     return label;
 }
 

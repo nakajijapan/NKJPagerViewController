@@ -8,13 +8,13 @@
 
 #import "NKJPagerViewController.h"
 
-#define kTabViewTag 18
-#define kContentViewTag 24
+const NSInteger NKJPagerViewControllerTabViewTag = 18;
+const NSInteger NKJPagerViewControllerContentViewTag = 24;
 
 #define kTabsViewBackgroundColor [UIColor colorWithRed:234.0 / 255.0 green:234.0 / 255.0 blue:234.0 / 255.0 alpha:0.75]
 #define kContentViewBackgroundColor [UIColor colorWithRed:248.0 / 255.0 green:248.0 / 255.0 blue:248.0 / 255.0 alpha:0.75]
 
-@interface NKJPagerViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
+@interface NKJPagerViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 @property CGFloat leftTabIndex;
 @property NSInteger tabCount;
@@ -58,9 +58,10 @@
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
 
-    self.heightOfTabView = 44.0;
-    self.yPositionOfTabView = 64.0;
+    self.heightOfTabView = 44.f;
+    self.yPositionOfTabView = 64.f;
     self.tabsViewBackgroundColor = kTabsViewBackgroundColor;
+    self.infiniteSwipe = YES;
 }
 
 - (void)defaultSetUp
@@ -90,20 +91,32 @@
         self.tabsView.scrollsToTop = NO;
         self.tabsView.showsHorizontalScrollIndicator = NO;
         self.tabsView.showsVerticalScrollIndicator = NO;
-        self.tabsView.tag = kTabViewTag;
+        self.tabsView.tag = NKJPagerViewControllerTabViewTag;
         self.tabsView.delegate = self;
-        self.tabsView.bounces = NO;
-        self.tabsView.scrollEnabled = NO;
 
         [self.view insertSubview:self.tabsView atIndex:0];
 
-        UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-        leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-        [self.tabsView addGestureRecognizer:leftSwipeGestureRecognizer];
+        if (self.isInfinitSwipe) {
+            
+            self.tabsView.bounces = NO;
+            self.tabsView.scrollEnabled = NO;
 
-        UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-        rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-        [self.tabsView addGestureRecognizer:rightSwipeGestureRecognizer];
+            UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                                             action:@selector(handleSwipeGesture:)];
+            leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+            [self.tabsView addGestureRecognizer:leftSwipeGestureRecognizer];
+            
+            UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                                              action:@selector(handleSwipeGesture:)];
+            rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+            [self.tabsView addGestureRecognizer:rightSwipeGestureRecognizer];
+            
+        } else {
+            
+            self.tabsView.bounces = YES;
+            self.tabsView.scrollEnabled = YES;
+            
+        }
     }
 
     NSInteger contentSizeWidth = 0;
@@ -117,7 +130,7 @@
         tabView.tag = i;
         CGRect frame = tabView.frame;
         frame.origin.x = contentSizeWidth;
-        frame.size.width = [self.dataSource widthOfTabView];
+        frame.size.width = [self.dataSource widthOfTabViewWithIndex:i];
         tabView.frame = frame;
         tabView.userInteractionEnabled = YES;
 
@@ -136,12 +149,17 @@
     self.tabsView.contentSize = CGSizeMake(contentSizeWidth, self.heightOfTabView);
 
     // Positioning
-    NSInteger contentOffsetWidth =
-        [self.dataSource widthOfTabView] * 2 + [self.dataSource widthOfTabView] - ([[UIScreen mainScreen] bounds].size.width - [self.dataSource widthOfTabView]) / 2;
-    self.tabsView.contentOffset = CGPointMake(contentOffsetWidth, 0);
-
+    if (self.infiniteSwipe) {
+        CGFloat contentOffsetWidth =
+        [self.dataSource widthOfTabViewWithIndex:0] +
+        [self.dataSource widthOfTabViewWithIndex:1] +
+        [self.dataSource widthOfTabViewWithIndex:2] -
+        ([[UIScreen mainScreen] bounds].size.width - [self.dataSource widthOfTabViewWithIndex:0]) / 2.f;
+        self.tabsView.contentOffset = CGPointMake(contentOffsetWidth, 0);
+    }
+    
     // Add contentView in Superview
-    self.contentView = [self.view viewWithTag:kContentViewTag];
+    self.contentView = [self.view viewWithTag:NKJPagerViewControllerContentViewTag];
     if (!self.contentView) {
 
         // Populate pageViewController.view in contentView
@@ -149,7 +167,7 @@
         self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         self.contentView.backgroundColor = kContentViewBackgroundColor;
         self.contentView.bounds = self.view.bounds;
-        self.contentView.tag = kContentViewTag;
+        self.contentView.tag = NKJPagerViewControllerContentViewTag;
         [self.view insertSubview:self.contentView atIndex:0];
 
         // constraints
@@ -168,16 +186,16 @@
     }
 
     // Setting Active Index
-    [self selectTabAtIndex:3];
+    if (self.infiniteSwipe) {
+        [self selectTabAtIndex:3];
+    } else {
+        [self selectTabAtIndex:0];
+    }
 
     // Default Design
     if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
         [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
     }
-}
-
-- (void)viewWillLayoutSubviews
-{
 }
 
 #pragma mark - Life Cycle
@@ -186,11 +204,6 @@
 {
     [super viewDidLoad];
     [self defaultSetUp];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Gesture
@@ -202,10 +215,22 @@
 }
 - (void)transitionTabViewWithView:(UIView *)view
 {
-    CGFloat buttonSize = [self.dataSource widthOfTabView];
+    CGFloat buttonSize = [self.dataSource widthOfTabViewWithIndex:view.tag];
     CGFloat sizeSpace = ([[UIScreen mainScreen] bounds].size.width - buttonSize) / 2;
-
-    [self.tabsView setContentOffset:CGPointMake(view.frame.origin.x - sizeSpace, 0) animated:YES];
+    
+    if (self.isInfinitSwipe) {
+        [self.tabsView setContentOffset:CGPointMake(view.frame.origin.x - sizeSpace, 0) animated:YES];
+    } else {
+        CGFloat rightEnd = self.tabsView.contentSize.width - [[UIScreen mainScreen] bounds].size.width;
+        
+        if (view.frame.origin.x <= sizeSpace) {
+            [self.tabsView setContentOffset:CGPointMake(0.f, 0.f) animated:YES];
+        } else if (view.frame.origin.x >= rightEnd + sizeSpace) {
+            [self.tabsView setContentOffset:CGPointMake(rightEnd, 0.f) animated:YES];
+        } else {
+            [self.tabsView setContentOffset:CGPointMake(view.frame.origin.x - sizeSpace, 0.f) animated:YES];
+        }
+    }
 }
 
 - (void)handleSwipeGesture:(UISwipeGestureRecognizer *)sender
@@ -219,7 +244,10 @@
         UIView *activeTabView = [self tabViewAtIndex:2];
         [self transitionTabViewWithView:activeTabView];
         [self selectTabAtIndex:activeTabView.tag];
-        [self scrollWithDirection:1];
+
+        if (!self.isInfinitSwipe) {
+            [self scrollWithDirection:1];
+        }
     }
 }
 
@@ -275,43 +303,58 @@
     }
 
     _activeContentIndex = index;
+    
+    if (completed) {
+        
+        if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
+            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self pageAnimationDidFinish];
+        });
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.tag == kTabViewTag) { // To scroll
+    if (self.isInfinitSwipe) {
 
-        NSInteger buttonSize = [self.dataSource widthOfTabView];
-        CGFloat position = self.tabsView.contentOffset.x / buttonSize;
-        CGFloat delta = position - (CGFloat)self.leftTabIndex;
-
-        if (fabs(delta) >= 1.0f) {
-            if (delta > 0) {
-                [self scrollWithDirection:0];
-            } else {
-                [self scrollWithDirection:1];
+        // To scroll
+        if (scrollView.tag == NKJPagerViewControllerTabViewTag) { // To scroll
+            
+            CGFloat buttonSize = [self.dataSource widthOfTabViewWithIndex:self.activeContentIndex];
+            CGFloat position = self.tabsView.contentOffset.x / buttonSize;
+            CGFloat delta = position - (CGFloat)self.leftTabIndex;
+            
+            if (fabs(delta) >= 1.0f) {
+                if (delta > 0) {
+                    [self scrollWithDirection:0];
+                } else {
+                    [self scrollWithDirection:1];
+                }
             }
         }
-    }
-}
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    if ([scrollView isEqual:self.tabsView]) {
-        if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
-            [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
-        }
     }
 }
 
 #pragma mark - Private Methods
 
+- (void)pageAnimationDidFinish
+{
+    if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
+        [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+    }
+}
+
 - (void)setActiveContentIndex:(NSInteger)activeContentIndex
 {
 
     UIViewController *viewController = [self viewControllerAtIndex:activeContentIndex];
+    __weak typeof(self) weakSelf = self;
 
     if (!viewController) {
         viewController = [[UIViewController alloc] init];
@@ -321,10 +364,18 @@
 
     if (activeContentIndex == self.activeContentIndex) {
 
+        
+        if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
+            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+        }
+        
         [self.pageViewController setViewControllers:@[ viewController ]
                                           direction:UIPageViewControllerNavigationDirectionForward
                                            animated:NO
-                                         completion:^(BOOL completed){// none
+                                         completion:^(BOOL completed){
+
+                                             [weakSelf pageAnimationDidFinish];
+
                                          }];
 
     } else {
@@ -339,11 +390,18 @@
         } else {
             direction = UIPageViewControllerNavigationDirectionForward;
         }
+        
+        if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
+            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+        }
 
         [self.pageViewController setViewControllers:@[ viewController ]
                                           direction:direction
                                            animated:YES
-                                         completion:^(BOOL completed){// none
+                                         completion:^(BOOL completed){
+
+                                             [weakSelf pageAnimationDidFinish];
+
                                          }];
     }
 
@@ -380,7 +438,7 @@
 
 - (void)scrollWithDirection:(NSInteger)direction
 {
-    CGFloat buttonSize = [self.dataSource widthOfTabView];
+    CGFloat buttonSize = [self.dataSource widthOfTabViewWithIndex:self.activeContentIndex];
 
     if (direction == 0) {
         UIView *firstView = [self.tabs objectAtIndex:0];

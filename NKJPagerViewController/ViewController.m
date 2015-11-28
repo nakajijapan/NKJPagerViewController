@@ -20,13 +20,9 @@
 
     self.dataSource = self;
     self.delegate = self;
+    self.infiniteSwipe = YES;
 
     [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - NKJPagerViewDataSource
@@ -38,11 +34,11 @@
 
 - (UIView *)viewPager:(NKJPagerViewController *)viewPager viewForTabAtIndex:(NSUInteger)index
 {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.f, 0.f, 160.f, 44.f)];
 
-    CGFloat r = (arc4random_uniform(255) + 1) / 255.0;
-    CGFloat g = (arc4random_uniform(255) + 1) / 255.0;
-    CGFloat b = (arc4random_uniform(255) + 1) / 255.0;
+    CGFloat r = (arc4random_uniform(255) + 1.f) / 255.0;
+    CGFloat g = (arc4random_uniform(255) + 1.f) / 255.0;
+    CGFloat b = (arc4random_uniform(255) + 1.f) / 255.0;
     UIColor *color = [UIColor colorWithRed:r green:g blue:b alpha:1.0];
     label.backgroundColor = color;
 
@@ -62,22 +58,22 @@
     return vc;
 }
 
-- (NSInteger)widthOfTabView
+- (CGFloat)widthOfTabViewWithIndex:(NSInteger)index
 {
-    return 160;
+    return 160.f;
 }
 
 #pragma mark - NKJPagerViewDelegate
 
 - (void)viewPager:(NKJPagerViewController *)viewPager didSwitchAtIndex:(NSInteger)index withTabs:(NSArray *)tabs
 {
-    [UIView animateWithDuration:0.1
+    [UIView animateWithDuration:0.1f
         animations:^{
             for (UIView *view in self.tabs) {
                 if (index == view.tag) {
-                    view.alpha = 1.0;
+                    view.alpha = 1.f;
                 } else {
-                    view.alpha = 0.5;
+                    view.alpha = 0.5f;
                 }
             }
         }

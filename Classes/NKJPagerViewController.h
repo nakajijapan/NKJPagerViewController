@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+extern const NSInteger NKJPagerViewControllerTabViewTag;
+extern const NSInteger NKJPagerViewControllerContentViewTag;
+
 @protocol NKJPagerViewDataSource;
 @protocol NKJPagerViewDelegate;
 
-@interface NKJPagerViewController : UIViewController
+@interface NKJPagerViewController : UIViewController <UIScrollViewDelegate>
 
 @property NSMutableArray *tabs;     // Views
 @property NSMutableArray *contents; // ViewControllers
@@ -27,13 +30,14 @@
 @property CGFloat heightOfTabView;
 @property CGFloat yPositionOfTabView;
 @property UIColor *tabsViewBackgroundColor;
+@property (getter = isInfinitSwipe, assign) BOOL infiniteSwipe;
 @end
 
 #pragma mark NKJPagerViewDataSource
 
 @protocol NKJPagerViewDataSource <NSObject>
 - (NSUInteger)numberOfTabView;
-- (NSInteger)widthOfTabView;
+- (CGFloat)widthOfTabViewWithIndex:(NSInteger)index;
 
 - (UIView *)viewPager:(NKJPagerViewController *)viewPager viewForTabAtIndex:(NSUInteger)index;
 - (UIViewController *)viewPager:(NKJPagerViewController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index;
@@ -45,6 +49,7 @@
 
 @optional
 - (void)viewPagerWillTransition:(NKJPagerViewController *)viewPager;
+- (void)viewPager:(NKJPagerViewController *)viewPager willSwitchAtIndex:(NSInteger)index withTabs:(NSArray *)tabs;
 - (void)viewPager:(NKJPagerViewController *)viewPager didSwitchAtIndex:(NSInteger)index withTabs:(NSArray *)tabs;
 - (void)viewPagerDidAddContentView;
 @end
