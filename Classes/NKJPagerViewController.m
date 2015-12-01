@@ -8,8 +8,8 @@
 
 #import "NKJPagerViewController.h"
 
-const NSInteger NKJPagerViewControllerTabViewTag = 18;
-const NSInteger NKJPagerViewControllerContentViewTag = 24;
+const NSInteger NKJPagerViewControllerTabViewTag = 1800;
+const NSInteger NKJPagerViewControllerContentViewTag = 2400;
 
 #define kTabsViewBackgroundColor [UIColor colorWithRed:234.0 / 255.0 green:234.0 / 255.0 blue:234.0 / 255.0 alpha:0.75]
 #define kContentViewBackgroundColor [UIColor colorWithRed:248.0 / 255.0 green:248.0 / 255.0 blue:248.0 / 255.0 alpha:0.75]
