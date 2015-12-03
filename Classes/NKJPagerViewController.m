@@ -20,7 +20,6 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
 @property NSInteger tabCount;
 @property UIPageViewController *pageViewController;
 
-@property (nonatomic) NSInteger activeContentIndex;
 @property (nonatomic) NSInteger activeTabIndex;
 
 @end
@@ -210,9 +209,14 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender
 {
+    if ([self.delegate respondsToSelector:@selector(viewPager:didTapMenuTabAtIndex:)]) {
+        [self.delegate viewPager:self didTapMenuTabAtIndex:sender.view.tag];
+    }
+    
     [self transitionTabViewWithView:sender.view];
     [self selectTabAtIndex:sender.view.tag];
 }
+
 - (void)transitionTabViewWithView:(UIView *)view
 {
     CGFloat buttonSize = [self.dataSource widthOfTabViewWithIndex:view.tag];
