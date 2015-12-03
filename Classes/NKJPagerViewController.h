@@ -31,6 +31,7 @@ extern const NSInteger NKJPagerViewControllerContentViewTag;
 @property CGFloat yPositionOfTabView;
 @property UIColor *tabsViewBackgroundColor;
 @property (getter = isInfinitSwipe, assign) BOOL infiniteSwipe;
+@property (nonatomic) NSInteger activeContentIndex;
 @end
 
 #pragma mark NKJPagerViewDataSource
@@ -48,6 +49,7 @@ extern const NSInteger NKJPagerViewControllerContentViewTag;
 @protocol NKJPagerViewDelegate <NSObject>
 
 @optional
+- (void)viewPager:(NKJPagerViewController *)viewPager didTapMenuTabAtIndex:(NSInteger)index;
 - (void)viewPagerWillTransition:(NKJPagerViewController *)viewPager;
 - (void)viewPager:(NKJPagerViewController *)viewPager willSwitchAtIndex:(NSInteger)index withTabs:(NSArray *)tabs;
 - (void)viewPager:(NKJPagerViewController *)viewPager didSwitchAtIndex:(NSInteger)index withTabs:(NSArray *)tabs;

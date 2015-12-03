@@ -15,14 +15,9 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
 #define kContentViewBackgroundColor [UIColor colorWithRed:248.0 / 255.0 green:248.0 / 255.0 blue:248.0 / 255.0 alpha:0.75]
 
 @interface NKJPagerViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
-
 @property CGFloat leftTabIndex;
 @property NSInteger tabCount;
 @property UIPageViewController *pageViewController;
-
-@property (nonatomic) NSInteger activeContentIndex;
-@property (nonatomic) NSInteger activeTabIndex;
-
 @end
 
 @implementation NKJPagerViewController
@@ -210,9 +205,14 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender
 {
+    if ([self.delegate respondsToSelector:@selector(viewPager:didTapMenuTabAtIndex:)]) {
+        [self.delegate viewPager:self didTapMenuTabAtIndex:sender.view.tag];
+    }
+    
     [self transitionTabViewWithView:sender.view];
     [self selectTabAtIndex:sender.view.tag];
 }
+
 - (void)transitionTabViewWithView:(UIView *)view
 {
     CGFloat buttonSize = [self.dataSource widthOfTabViewWithIndex:view.tag];
