@@ -239,15 +239,11 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
         UIView *activeTabView = [self tabViewAtIndex:4];
         [self transitionTabViewWithView:activeTabView];
         [self selectTabAtIndex:activeTabView.tag];
-
     } else if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
         UIView *activeTabView = [self tabViewAtIndex:2];
         [self transitionTabViewWithView:activeTabView];
         [self selectTabAtIndex:activeTabView.tag];
-
-        if (!self.isInfinitSwipe) {
-            [self scrollWithDirection:1];
-        }
+        [self scrollWithDirection:1];
     }
 }
 
