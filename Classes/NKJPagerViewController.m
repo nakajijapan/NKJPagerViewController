@@ -299,6 +299,7 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
     for (UIView *view in self.tabsView.subviews) {
         if (view.tag == index) {
             [self transitionTabViewWithView:view];
+            break;
         }
     }
 
@@ -382,9 +383,21 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
 
         NSInteger direction = 0;
         if (activeContentIndex == self.contents.count - 1 && self.activeContentIndex == 0) {
-            direction = UIPageViewControllerNavigationDirectionReverse;
+
+            if (self.isInfinitSwipe) {
+                direction = UIPageViewControllerNavigationDirectionReverse;
+            } else {
+                direction = UIPageViewControllerNavigationDirectionForward;
+            }
+
         } else if (activeContentIndex == 0 && self.activeContentIndex == self.contents.count - 1) {
-            direction = UIPageViewControllerNavigationDirectionForward;
+
+            if (self.isInfinitSwipe) {
+                direction = UIPageViewControllerNavigationDirectionForward;
+            } else {
+                direction = UIPageViewControllerNavigationDirectionReverse;
+            }
+            
         } else if (activeContentIndex < self.activeContentIndex) {
             direction = UIPageViewControllerNavigationDirectionReverse;
         } else {
