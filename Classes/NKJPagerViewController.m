@@ -1,5 +1,5 @@
 //
-//  MIPagerViewController.m
+//  NKJPagerViewController.m
 //  NKJPagerViewController
 //
 //  Created by nakajijapan on 11/28/14.
