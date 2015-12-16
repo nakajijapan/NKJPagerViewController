@@ -26,6 +26,7 @@ extern const NSInteger NKJPagerViewControllerContentViewTag;
 @property id<NKJPagerViewDelegate> delegate;
 
 - (void)setActiveContentIndex:(NSInteger)index;
+- (void)switchViewControllerWithIndex:(NSInteger)index;
 
 @property CGFloat heightOfTabView;
 @property CGFloat yPositionOfTabView;

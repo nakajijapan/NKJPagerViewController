@@ -338,14 +338,8 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
     }
 }
 
-#pragma mark - Private Methods
 
-- (void)pageAnimationDidFinish
-{
-    if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
-        [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
-    }
-}
+#pragma mark - Public Methods
 
 - (void)setActiveContentIndex:(NSInteger)activeContentIndex
 {
@@ -415,6 +409,22 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
     }
 
     _activeContentIndex = activeContentIndex;
+}
+
+- (void)switchViewControllerWithIndex:(NSInteger)index
+{
+    UIView *view = self.tabs[index];
+    [self transitionTabViewWithView:view];
+    [self selectTabAtIndex:index];
+}
+
+#pragma mark - Private Methods
+
+- (void)pageAnimationDidFinish
+{
+    if ([self.delegate respondsToSelector:@selector(viewPager:didSwitchAtIndex:withTabs:)]) {
+        [self.delegate viewPager:self didSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+    }
 }
 
 - (void)selectTabAtIndex:(NSUInteger)index
