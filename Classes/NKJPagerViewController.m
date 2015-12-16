@@ -411,6 +411,13 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
     _activeContentIndex = activeContentIndex;
 }
 
+- (void)switchViewControllerWithIndex:(NSInteger)index
+{
+    UIView *view = self.tabs[index];
+    [self transitionTabViewWithView:view];
+    [self selectTabAtIndex:index];
+}
+
 #pragma mark - Private Methods
 
 - (void)pageAnimationDidFinish
