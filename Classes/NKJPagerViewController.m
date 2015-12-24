@@ -304,7 +304,7 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
     if (completed) {
         
         if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
-            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+            [self.delegate viewPager:self willSwitchAtIndex:index withTabs:self.tabs];
         }
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
