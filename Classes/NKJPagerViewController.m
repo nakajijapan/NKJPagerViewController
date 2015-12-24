@@ -355,9 +355,8 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
 
     if (activeContentIndex == self.activeContentIndex) {
 
-        
         if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
-            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+            [self.delegate viewPager:self willSwitchAtIndex:activeContentIndex withTabs:self.tabs];
         }
         
         [self.pageViewController setViewControllers:@[ viewController ]
@@ -365,6 +364,7 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
                                            animated:NO
                                          completion:^(BOOL completed){
 
+                                             _activeContentIndex = activeContentIndex;
                                              [weakSelf pageAnimationDidFinish];
 
                                          }];
@@ -395,7 +395,7 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
         }
         
         if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
-            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+            [self.delegate viewPager:self willSwitchAtIndex:activeContentIndex withTabs:self.tabs];
         }
 
         [self.pageViewController setViewControllers:@[ viewController ]
@@ -403,12 +403,12 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
                                            animated:YES
                                          completion:^(BOOL completed){
 
+                                             _activeContentIndex = activeContentIndex;
                                              [weakSelf pageAnimationDidFinish];
 
                                          }];
     }
 
-    _activeContentIndex = activeContentIndex;
 }
 
 - (void)switchViewControllerWithIndex:(NSInteger)index
