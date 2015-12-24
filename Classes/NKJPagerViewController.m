@@ -304,7 +304,7 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
     if (completed) {
         
         if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
-            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+            [self.delegate viewPager:self willSwitchAtIndex:index withTabs:self.tabs];
         }
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -355,9 +355,8 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
 
     if (activeContentIndex == self.activeContentIndex) {
 
-        
         if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
-            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+            [self.delegate viewPager:self willSwitchAtIndex:activeContentIndex withTabs:self.tabs];
         }
         
         [self.pageViewController setViewControllers:@[ viewController ]
@@ -365,6 +364,7 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
                                            animated:NO
                                          completion:^(BOOL completed){
 
+                                             _activeContentIndex = activeContentIndex;
                                              [weakSelf pageAnimationDidFinish];
 
                                          }];
@@ -395,7 +395,7 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
         }
         
         if ([self respondsToSelector:@selector(viewPager:willSwitchAtIndex:withTabs:)]) {
-            [self.delegate viewPager:self willSwitchAtIndex:self.activeContentIndex withTabs:self.tabs];
+            [self.delegate viewPager:self willSwitchAtIndex:activeContentIndex withTabs:self.tabs];
         }
 
         [self.pageViewController setViewControllers:@[ viewController ]
@@ -403,12 +403,12 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
                                            animated:YES
                                          completion:^(BOOL completed){
 
+                                             _activeContentIndex = activeContentIndex;
                                              [weakSelf pageAnimationDidFinish];
 
                                          }];
     }
 
-    _activeContentIndex = activeContentIndex;
 }
 
 - (void)switchViewControllerWithIndex:(NSInteger)index
