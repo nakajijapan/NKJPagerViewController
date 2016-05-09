@@ -18,6 +18,7 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
 @property CGFloat leftTabIndex;
 @property NSInteger tabCount;
 @property UIPageViewController *pageViewController;
+@property (nonatomic) BOOL transitionInProgress;
 @end
 
 @implementation NKJPagerViewController
@@ -317,6 +318,10 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    if (scrollView.isTracking || scrollView.isDecelerating) {
+        self.transitionInProgress = YES;
+    }
+    
     if (self.isInfinitSwipe) {
 
         // To scroll
@@ -336,6 +341,11 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
         }
 
     }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    self.transitionInProgress = NO;
 }
 
 
@@ -359,16 +369,19 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
             [self.delegate viewPager:self willSwitchAtIndex:activeContentIndex withTabs:self.tabs];
         }
         
-        [self.pageViewController setViewControllers:@[ viewController ]
-                                          direction:UIPageViewControllerNavigationDirectionForward
-                                           animated:NO
-                                         completion:^(BOOL completed){
-
-                                             _activeContentIndex = activeContentIndex;
-                                             [weakSelf pageAnimationDidFinish];
-
-                                         }];
-
+        if (!self.transitionInProgress) {
+            self.transitionInProgress = YES;
+            [self.pageViewController setViewControllers:@[ viewController ]
+                                              direction:UIPageViewControllerNavigationDirectionForward
+                                               animated:NO
+                                             completion:^(BOOL completed){
+                                                 weakSelf.transitionInProgress = !completed;
+                                                 _activeContentIndex = activeContentIndex;
+                                                 [weakSelf pageAnimationDidFinish];
+                                                 
+                                             }];
+        }
+        
     } else {
 
         NSInteger direction = 0;
@@ -398,15 +411,18 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
             [self.delegate viewPager:self willSwitchAtIndex:activeContentIndex withTabs:self.tabs];
         }
 
-        [self.pageViewController setViewControllers:@[ viewController ]
-                                          direction:direction
-                                           animated:YES
-                                         completion:^(BOOL completed){
-
-                                             _activeContentIndex = activeContentIndex;
-                                             [weakSelf pageAnimationDidFinish];
-
-                                         }];
+        if (!self.transitionInProgress) {
+            self.transitionInProgress = YES;
+            [self.pageViewController setViewControllers:@[ viewController ]
+                                              direction:direction
+                                               animated:YES
+                                             completion:^(BOOL completed){
+                                                 weakSelf.transitionInProgress = !completed;
+                                                 _activeContentIndex = activeContentIndex;
+                                                 [weakSelf pageAnimationDidFinish];
+                                                 
+                                             }];
+        }
     }
 
 }
