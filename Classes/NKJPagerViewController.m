@@ -348,6 +348,10 @@ const NSInteger NKJPagerViewControllerContentViewTag = 2400;
     self.transitionInProgress = NO;
 }
 
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    self.transitionInProgress = NO;
+}
 
 #pragma mark - Public Methods
 
